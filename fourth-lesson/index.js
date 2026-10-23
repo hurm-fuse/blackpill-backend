@@ -15,6 +15,7 @@ app.get('/blog', (req, res) => {
   res.send('Hello World from blog page!')
 })
 
+// slug
 app.get('/blog/:slug', (req, res) => {
   res.send(`hello ${req.params.slug}`)
 })
