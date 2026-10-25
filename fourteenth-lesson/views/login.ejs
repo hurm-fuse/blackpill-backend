@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login User</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: darkslateblue;
+            color: white;
+        }
+
+        .create-user {
+            color: darkslateblue;
+            padding: 10px;
+            margin: 25px;
+            background-color: lightblue;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: fit-content;
+            max-width: calc(100% - 50px);
+        }
+
+        .create-user h3 {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .create-user form input {
+            font-size: 50px;
+            max-width: 100%;
+        }
+
+        .create-user form input[type="submit"] {
+            background-color: darkslateblue;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            margin: 10px 0 0;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 600px) {
+            .create-user {
+                margin: 15px;
+                max-width: calc(100% - 30px);
+            }
+
+            .create-user h3 {
+                font-size: clamp(28px, 8vw, 40px);
+            }
+
+            .create-user form input {
+                font-size: clamp(16px, 4.5vw, 24px);
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="create-user">
+        <h3>Login User</h3>
+
+        <form action="/login" method="post">
+            <input type="email" placeholder="email" name="email">
+            <br>
+            <input type="password" placeholder="password" name="password">
+            <br>
+            <input type="submit" value="Login User">
+        </form>
+
+        <a href="/logout">logout</a>
+    </div>
+</body>
+
+</html>
