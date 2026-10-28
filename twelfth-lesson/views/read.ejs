@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            background-color: firebrick;
+            color: aliceblue;
+            width: 100%;
+            min-height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin: 25px;
+        }
+        .nav {
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: aliceblue;
+        }
+        h1 {
+            margin-bottom: 15px;
+        }
+        .users {
+            gap: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            background-color: cadetblue;
+            padding: 25px;
+            border-radius: 5px;
+        }
+        .user {
+            width: calc(25% - 15px);
+            min-width: 220px;
+            background-color: cornflowerblue;
+            padding: 25px;
+            overflow-wrap: anywhere;
+            border-radius: 5px;
+        }
+        .user-image {
+            width: 100%;
+            height: 160px;
+            background-color: whitesmoke;
+            padding: 10px;
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+        .user-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .user-info {
+            margin-bottom: 8px;
+        }
+        .editing {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .editing a {
+            color: white;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 15px;
+            }
+            .users {
+                padding: 15px;
+            }
+            .user {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="/">Back To Home</a>
+        </div>
+        <h1>All Users!</h1>
+        <div class="users">
+            <% if (users.length > 0) { %>
+                <% users.forEach(function(user) { %>
+                    <div class="user">
+                        <div class="user-image">
+                            <img src="<%= user.image %>" alt="<%= user.name %>">
+                        </div>
+                        <div class="user-info">
+                            <%= user.name %>
+                        </div>
+                        <div class="user-info">
+                            <%= user.email %>
+                        </div>
+                        <div class="editing">
+                            <a href="/edit/<%= user._id %>">edit user</a>
+                            <a href="/delete/<%= user._id %>">delete user</a>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <h3>No users yet!</h3>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

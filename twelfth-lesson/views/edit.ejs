@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            background-color: firebrick;
+            color: aliceblue;
+            width: 100%;
+            height: 100%;
+        }
+
+        .container{
+            margin: 25px 25px;
+        }
+
+        .form {
+            margin-top: 10px;
+            background-color: cadetblue;
+            color: crimson;
+            display: block;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .form form {
+            display: block;
+        }
+
+        .form form input{
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="/read">Read Users</a>
+        </div>
+        <h1>Update User: update who you are!</h1>
+
+        <div class="form">
+            <form action="/update/<%= user.id %>" method="post">
+                <input type="text" placeholder="name" name="name" value="<%= user.name %>">
+                <br>
+                <input type="email" placeholder="email" name="email" value="<%= user.email %>">
+                <br>
+                <input type="text" placeholder="image url" name="image" value="<%= user.image %>">
+                <br>
+                <input type="submit" value="Update User">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

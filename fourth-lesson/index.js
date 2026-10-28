@@ -6,7 +6,7 @@ app.use(express.static('public')) // it reach public folder
 
 // app.get or app.post or app.put or app.delete(path, handler)
 app.get('/', (req, res) => {
-  res.sendFile('./index.html')
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 })
 
 app.get('/about', (req, res) => {

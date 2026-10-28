@@ -3,21 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Upload</title>
+    <title>Multer File Uploads</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f4f4;
+            padding: 30px 15px;
+            color: #222;
+        }
+
+        main {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .upload-box {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        input, button {
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background: #222;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background: #444;
+        }
+
+        .note {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+    </style>
 </head>
+
 <body>
+    <main>
+        <h1>Multer File Uploads</h1>
 
-    <h1>Upload Your Image</h1>
+        <!-- METHOD 1: upload.single() -->
+        <section class="upload-box">
+            <h2>1. Upload Single File</h2>
+            <p class="note">Upload one avatar image or another test file.</p>
 
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="avatar" accept="image/*" required>
-        <button type="submit">Upload</button>
-    </form>
+            <form action="/upload-single" method="POST"
+                  enctype="multipart/form-data">
 
-    <% if (image) { %>
-        <h2>Your Image</h2>
-        <img src="/uploads/<%= image %>" alt="Uploaded image" width="300">
-    <% } %>
+                <label for="avatar">Choose one file:</label>
+                <input type="file" id="avatar" name="avatar" required>
 
+                <input type="text" name="username"
+                       placeholder="Enter your username">
+
+                <button type="submit">Upload Single File</button>
+            </form>
+        </section>
+
+        <!-- METHOD 2: upload.array() -->
+        <section class="upload-box">
+            <h2>2. Upload Multiple Files</h2>
+            <p class="note">Select up to 5 files using the same field name.</p>
+
+            <form action="/upload-array" method="POST"
+                  enctype="multipart/form-data">
+
+                <label for="photos">Choose multiple files:</label>
+                <input type="file" id="photos" name="photos"
+                       multiple required>
+
+                <button type="submit">Upload Multiple Files</button>
+            </form>
+        </section>
+
+        <!-- METHOD 3: upload.fields() -->
+        <section class="upload-box">
+            <h2>3. Upload Different File Fields</h2>
+            <p class="note">One avatar and up to three documents.</p>
+
+            <form action="/upload-fields" method="POST"
+                  enctype="multipart/form-data">
+
+                <label for="fields-avatar">Avatar:</label>
+                <input type="file" id="fields-avatar" name="avatar" required>
+
+                <label for="documents">Documents:</label>
+                <input type="file" id="documents" name="documents"
+                       multiple required>
+
+                <button type="submit">Upload Avatar and Documents</button>
+            </form>
+        </section>
+
+        <!-- METHOD 4: upload.none() -->
+        <section class="upload-box">
+            <h2>4. Text Fields Only</h2>
+            <p class="note">This form sends text data without files.</p>
+
+            <form action="/upload-none" method="POST"
+                  enctype="multipart/form-data">
+
+                <input type="text" name="username"
+                       placeholder="Enter your username" required>
+
+                <button type="submit">Submit Text</button>
+            </form>
+        </section>
+
+        <!-- METHOD 5: upload.any() -->
+        <section class="upload-box">
+            <h2>5. Upload Files with Any Field Name</h2>
+            <p class="note">Try selecting files from these different fields.</p>
+
+            <form action="/upload-any" method="POST"
+                  enctype="multipart/form-data">
+
+                <label for="any-avatar">Avatar:</label>
+                <input type="file" id="any-avatar" name="avatar">
+
+                <label for="any-documents">Documents:</label>
+                <input type="file" id="any-documents" name="documents"
+                       multiple>
+
+                <button type="submit">Upload All Selected Files</button>
+            </form>
+        </section>
+    </main>
 </body>
 </html>

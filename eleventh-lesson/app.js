@@ -29,13 +29,17 @@ app.get('/updateuser', async (req, res) => {
 })
 
 app.get('/readuser', async (req, res) => {
-    // find all user
-    let readUser = await userModel.find();
-    // find particular user
-    let readoneUser = await userModel.findOne({username: "maaz"});
-    res.send(readUser);
-    res.send(readoneUser);
-})
+    const readUser = await userModel.find();
+
+    const readoneUser = await userModel.findOne({
+        username: "maaz"
+    });
+
+    res.json({
+        users: readUser,
+        selectedUser: readoneUser
+    });
+});
 
 app.get('/delete', async (req, res) => {
     // find particular user and delete
